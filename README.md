@@ -91,9 +91,3 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Thanks to all contributors
 - Inspired by various Fortnite backend implementations
-- [x] Vbucks command
-- [x] Stats command
-- [ ] Arena leaderboard command
-- [ ] Tournament leaderboard command
-- [x] Player count command
-- [x] User lookup command
