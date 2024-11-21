@@ -27,6 +27,7 @@ import { SecurityManager } from './services/SecurityManager';
 import { securityMiddleware } from './middleware/SecurityMiddleware';
 import { MissionManager } from "./stw/MissionManager";
 import { StorylineManager } from "./stw/StorylineManager";
+import { GameServerManager } from "./gameserver/GameServerManager";
 
 export type Variables = {
   user: User;
@@ -79,6 +80,9 @@ async function initialize() {
     // Initialize STW systems
     await StorylineManager.initialize();
     MissionManager.initialize();
+    
+    // Initialize game server manager
+    await import("./routes/gameserver/connection");
     
     // Add stats endpoint
     app.get('/api/system/stats', (c) => {
