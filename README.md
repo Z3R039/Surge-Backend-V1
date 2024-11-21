@@ -2,91 +2,95 @@
 
 ![Banner](https://cdn2.unrealengine.com/13br-galaxycup-newsheader-1900x600-1900x600-482668392.jpg)
 
-**Universal Fortnite Backend written in TypeScript using Postgres powered by TypeORM**
+**Surge Backend**
 
-## Supported MCP Operations
+A modern backend implementation for Fortnite, focused on performance and scalability.
 
-`QueryProfile` `BulkEquipBattleRoyaleCustomization` `ClaimMfaEnabled` `PurchaseCatalogEntry` `MarkItemSeen` `RefundMtxPurchase` `RemoveGiftBox` `SetBattleRoyaleBanner` `SetCosmeticLockerSlot` `SetMtxPlatform` `EquipBattleRoyaleCustomization` `SetItemFavoriteStatusBatch` `GiftCatalogEntry` `ClientQuestLogin` `MarkNewQuestNotificationSent`
+## Features
 
-## Requirements
+### Core Features
+- ✅ XMPP Support (TCP & WebSocket)
+- ✅ Matchmaker System
+- ✅ Party System (V1 & V2)
+- ✅ Authentication with Permissions
+- ✅ Profile Management
+- ✅ Automated Session Management
+- ✅ Security System
 
-- [Bun](https://bun.sh)
-- [Git](https://git-scm.com/downloads)
-- [Postgres](https://www.postgresql.org/download/)
+### Game Features
+- ✅ VBucks Rewards System
+  - Kill rewards
+  - Victory rewards
+  - Customizable amounts
+- ✅ Auto-Shop System
+  - Daily rotations
+  - Configurable items
+  - Automated updates
+- ✅ Leaderboards
+  - Global rankings
+  - Stats tracking
+  - Real-time updates
+- ✅ Arena Mode
+  - Point system
+  - Division rankings
+  - Competitive matchmaking
+- ✅ Tournament System
+  - Custom tournaments
+  - Scoring system
+  - Prize distribution
 
-## Installation
 
-1. **Clone the repository:**
+## API Documentation
 
-```bash
-git clone https://github.com/chloefrfr/ChronosPublic
-```
+### Authentication
+- POST `/api/auth/login` - Login and get session token
+- POST `/api/auth/register` - Register new account
 
-2. **Install packages**
+### Profile
+- GET `/api/profile` - Get user profile
+- PUT `/api/profile` - Update profile
 
-```bash
-bun install
-```
+### Stats
+- GET `/api/system/stats` - Get system statistics
+- GET `/api/leaderboard` - Get global leaderboard
 
-3. **Configure environment variables:**
+### Shop
+- GET `/api/shop/current` - Get current shop items
+- POST `/api/shop/purchase` - Purchase item
 
-Rename `.example.env` to `.env` and provide the necessary information.
+### Arena
+- GET `/api/arena/stats` - Get arena statistics
+- GET `/api/arena/division` - Get current division
 
-4. **Configure hosting:**
+### Tournaments
+- GET `/api/tournaments` - List active tournaments
+- POST `/api/tournaments/register` - Register for tournament
 
-To set up your game server and choose regional IP addresses for matchmaking, go to `hosting/hostOptions.ts`.
+## Security
 
-5. **Run**
+The backend implements several security measures:
+- Automated session management
+- Token-based authentication
+- Request validation
+- Rate limiting
+- Session cleanup
 
-```bash
-bun run src/index.ts
-```
+## Contributing
 
-## What's Next?
+1. Fork the repository
+2. Create your feature branch
+3. Commit your changes
+4. Push to the branch
+5. Create a Pull Request
 
-- Save the World (Will never be finished)
-- TCP XMPP
+## License
 
-# Available Quests
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
 
-- **Season 7:** Daily & Week 1 Quests
-- **Season 8:** Daily & Week 1 Quests
-- **Season 9:** Daily & Week 1 Quests
-- **Season 13:** Daily & Week 1 Quests
+## Acknowledgments
 
-## Planned Features
-
-- [x] Vbucks on kill/win
-- [x] Easy setup
-- [x] Auto shop
-- [x] Battle Pass
-- [x] XP & Leveling
-- [x] Challenges
-- [x] Friends
-- [x] XMPP
-- [x] Matchmaker
-- [x] Party V1
-- [x] Party V2
-- [x] Daily rewards
-- [x] Gifting
-- [x] Purchasing from item shop
-- [x] HWID Bans
-- [x] Refunding
-- [ ] Save the World
-- [x] Arena
-- [x] ClientSettings
-- [x] GameSessions
-- [x] Authentication using Permissions (eg... `fortnite:profile:abcd1234:commands`)
-- [x] Leaderboards (Stats)
-
-## Maybe Features?
-
-- [ ] IP Bans
-- [ ] Seasonal Rewards
-- [ ] Tournaments
-
-## Planned Bot Commands
-
+- Thanks to all contributors
+- Inspired by various Fortnite backend implementations
 - [x] Vbucks command
 - [x] Stats command
 - [ ] Arena leaderboard command
