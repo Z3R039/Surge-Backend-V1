@@ -90,6 +90,15 @@ export class GameServerSync {
 
         // Cleanup expired tokens periodically
         setInterval(() => this.cleanupExpiredTokens(), 3600000); // Every hour
+
+        wss.on('error', (error) => {
+            logger.error(`WebSocket server error: ${error}`);
+        });
+
+        ws.on('error', (error) => {
+            logger.error(`WebSocket connection error: ${error}`);
+            ws.close(1011, 'Internal error occurred');
+        });
     }
 
     private static generateAuthToken(): AuthToken {

@@ -191,4 +191,54 @@ export class GameServerManager {
 
         return totalWaitTime / tickets.length;
     }
+
+    static async handleServerDisconnect(serverId: string) {
+        const server = this.servers.get(serverId);
+        if (!server) return;
+
+        // Update region stats
+        const stats = ServerClusterManager.getRegionStats().get(server.region);
+        if (stats) {
+            stats.activeServers--;
+            stats.availableSlots -= (server.maxPlayers - server.currentPlayers);
+        }
+
+        // Update game mode stats
+        const modeStats = GameModeAssigner.getGameModeStats().get(server.gameMode);
+        if (modeStats) {
+            modeStats.activeServers--;
+        }
+
+        // Remove server from active servers
+        this.servers.delete(serverId);
+        logger.info(`Server ${serverId} disconnected and removed from active servers`);
+    }
+
+    static async updatePlayerCount(serverId: string, count: number): Promise<boolean> {
+        const server = this.servers.get(serverId);
+        if (!server) return false;
+
+        const oldCount = server.currentPlayers;
+        server.currentPlayers = count;
+
+        // Update region stats
+        ServerClusterManager.updateRegionStats(server.region, server);
+
+        // Update game mode stats if significant change
+        if (Math.abs(oldCount - count) >= 5) {
+            const modeServers = Array.from(this.servers.values())
+                .filter(s => s.gameMode === server.gameMode);
+            const queueLength = Array.from(this.matchmakingQueue.values())
+                .filter(t => t.gameMode === server.gameMode).length;
+            
+            GameModeAssigner.updateStats(
+                server.gameMode,
+                modeServers.length,
+                queueLength,
+                this.calculateAverageWaitTime(server.gameMode)
+            );
+        }
+
+        return true;
+    }
 } 
