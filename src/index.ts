@@ -25,6 +25,8 @@ import { WeeklyQuestGranter } from "./utilities/quests/WeeklyQuestGranter";
 import { QuestsService } from "./wrappers/database/QuestsService";
 import { SecurityManager } from './services/SecurityManager';
 import { securityMiddleware } from './middleware/SecurityMiddleware';
+import { MissionManager } from "./stw/MissionManager";
+import { StorylineManager } from "./stw/StorylineManager";
 
 export type Variables = {
   user: User;
@@ -73,6 +75,10 @@ async function initialize() {
     await loadRoutes(path.join(__dirname, "routes"), app);
     await rotate();
     await QuestManager.initQuests();
+    
+    // Initialize STW systems
+    await StorylineManager.initialize();
+    MissionManager.initialize();
     
     // Add stats endpoint
     app.get('/api/system/stats', (c) => {

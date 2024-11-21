@@ -39,6 +39,36 @@ A modern backend implementation for Fortnite, focused on performance and scalabi
   - Scoring system
   - Prize distribution
 
+### Save the World Features
+- ✅ Mission System
+  - Dynamic mission generation
+  - Various mission types
+  - Rotating mission alerts
+  - V-Bucks missions
+  - Custom modifiers
+- ✅ Hero Management
+  - Hero leveling
+  - Evolution system
+  - Perk unlocks
+  - Hero loadouts
+- ✅ Survivor Squads
+  - Squad bonuses
+  - Personality matching
+  - Power level calculation
+  - Auto-fill optimization
+- ✅ Rewards System
+  - Mission rewards
+  - Daily rewards
+  - Quest rewards
+  - V-Bucks missions
+- ✅ Storyline System
+  - Quest chains
+  - Character dialogue
+  - Voice acting support
+  - Zone progression
+  - Multiple quest types
+  - Dynamic requirements
+  - Reward system integration
 
 ## API Documentation
 
@@ -65,6 +95,13 @@ A modern backend implementation for Fortnite, focused on performance and scalabi
 ### Tournaments
 - GET `/api/tournaments` - List active tournaments
 - POST `/api/tournaments/register` - Register for tournament
+
+### Save the World
+- GET `/api/stw/missions/current` - Get current missions
+- POST `/api/stw/missions/:missionId/complete` - Complete mission
+- GET `/api/stw/storyline/current` - Get current quest
+- GET `/api/stw/storyline/progress` - Get zone progress
+- POST `/api/stw/storyline/progress` - Update quest progress
 
 ## Security
 
