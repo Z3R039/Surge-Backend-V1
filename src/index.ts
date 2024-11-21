@@ -28,6 +28,10 @@ import { securityMiddleware } from './middleware/SecurityMiddleware';
 import { MissionManager } from "./stw/MissionManager";
 import { StorylineManager } from "./stw/StorylineManager";
 import { GameServerManager } from "./gameserver/GameServerManager";
+import { GameServerConfig } from "./config/GameServerConfig";
+import { GameServerSync } from "./gameserver/GameServerSync";
+import { ServerClusterManager } from "./gameserver/ServerClusterManager";
+import { GameModeAssigner } from "./gameserver/GameModeAssigner";
 
 export type Variables = {
   user: User;
@@ -83,6 +87,18 @@ async function initialize() {
     
     // Initialize game server manager
     await import("./routes/gameserver/connection");
+    
+    // Initialize game server config
+    GameServerConfig.initialize();
+    
+    // Initialize game server sync
+    GameServerSync.initialize(config.gameserverWebsocketPort);
+    
+    // Initialize server cluster manager with configs from env
+    ServerClusterManager.initialize(config.gameservers);
+    
+    // Initialize game mode assigner
+    GameModeAssigner.initialize();
     
     // Add stats endpoint
     app.get('/api/system/stats', (c) => {

@@ -17,6 +17,29 @@ A modern backend implementation for Fortnite, focused on performance and scalabi
 - ✅ Automated Session Management
 - ✅ Security System
 
+### Matchmaking Features
+- ✅ Region-Based Matchmaking
+  - NA (North America)
+  - EU (Europe)
+  - OCE (Oceania)
+  - ASIA (Asia)
+- ✅ Multiple Server Support
+  - Multiple IPs per region
+  - Automatic game mode distribution
+  - Load balancing
+  - Server health monitoring
+- ✅ Game Mode Management
+  - BR Solo (40% allocation)
+  - BR Duos (30% allocation)
+  - BR Squads (20% allocation)
+  - Late Game (5% allocation)
+  - Save the World (5% allocation)
+- ✅ Region Failover
+  - Automatic region switching
+  - Configurable failover order
+  - Ping-based routing
+  - High availability
+
 ### Game Features
 - ✅ VBucks Rewards System
   - Kill rewards
@@ -70,6 +93,11 @@ A modern backend implementation for Fortnite, focused on performance and scalabi
   - Dynamic requirements
   - Reward system integration
 
+## Configuration
+
+### Matchmaking Configuration
+
+
 ## API Documentation
 
 ### Authentication
@@ -96,6 +124,13 @@ A modern backend implementation for Fortnite, focused on performance and scalabi
 - GET `/api/tournaments` - List active tournaments
 - POST `/api/tournaments/register` - Register for tournament
 
+### Game Server
+- POST `/api/gameserver/register` - Register new game server
+- GET `/api/gameserver/:serverId` - Get server status
+- PUT `/api/gameserver/:serverId/status` - Update server status
+- POST `/api/gameserver/match` - Request matchmaking
+- GET `/api/gameserver/match/:ticketId` - Check match status
+
 ### Save the World
 - GET `/api/stw/missions/current` - Get current missions
 - POST `/api/stw/missions/:missionId/complete` - Complete mission
@@ -111,6 +146,17 @@ The backend implements several security measures:
 - Request validation
 - Rate limiting
 - Session cleanup
+
+## Integration
+
+### Game Server Integration
+To integrate with [Surge-Gameserver](https://github.com/Z3R039/Surge-Gameserver):
+1. Configure your server IPs in the MATCHMAKING_REGIONS setting
+2. The backend will automatically:
+   - Assign game modes based on distribution
+   - Handle region-based routing
+   - Manage server health
+   - Balance player load
 
 ## Contributing
 
@@ -128,3 +174,4 @@ This project is licensed under the MIT License - see the [LICENSE](LICENSE) file
 
 - Thanks to all contributors
 - Inspired by various Fortnite backend implementations
+- Special thanks to Me [Z3R039](https://github.com/Z3R039) for the game server implementation
